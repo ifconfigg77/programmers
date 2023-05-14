@@ -1,0 +1,29 @@
+def solution(babbling):
+    answer = 0
+    dic={"aya":"1","ye":"2","woo":"3","ma":"4"}
+    li=[]
+    ## 숫자화 하기
+    ## 숫자로 바뀌였다는 것은 발음할 수 있다는 뜻이다
+    for s in babbling:
+        string=s
+        for key in dic.keys():
+            string=string.replace(key,dic[key])
+        li.append(string)
+    ## 발음할 수 있는 것중에 연속된 발음을 스택을 이용해서 걸러준다.
+    for i in li:
+        stack=[]
+        tmp=0
+        for j in range(len(i)):
+            if j==0 and i[j] in ["1","2","3","4"]:
+                tmp+=1
+                stack.append(i[j])
+            else:
+                if stack:
+                    if i[j]!=stack[-1] and i[j] in ["1","2","3","4"]:
+                        tmp+=1
+                        stack.append(i[j])
+        if tmp==len(i):
+            answer+=1
+                
+            
+    return answer
