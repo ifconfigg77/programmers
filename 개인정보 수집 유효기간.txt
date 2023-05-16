@@ -3,7 +3,7 @@ def solution(today, terms, privacies):
     dic={}
     for i in range(len(terms)):
         s=terms[i]
-        dic[s[0]]=int(s[1:])
+        dic[s[0]]=int(s[2:])
     
     limit_li=[]
     for i in range(len(privacies)):
@@ -13,16 +13,20 @@ def solution(today, terms, privacies):
         mm=int(s[5:7])
         dd=int(s[8:10])
         mm+=dic[kind]
-        dd-=1
+        if dic[kind]>0:
+            dd-=1
         if dd==0:
             mm-=1
             dd="28"
         if len(str(dd))==1:
             dd="0"+str(dd)
             
-        if mm>12:
+        if mm>12 and mm%12!=0:
             yy+=mm//12
             mm=mm%12
+        elif mm%12==0:
+            yy+=mm//12-1
+            mm=12
         if mm<10:
             mm="0"+str(mm)
         tmp=str(yy)+str(mm)+str(dd)
