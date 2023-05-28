@@ -1,0 +1,9 @@
+from collections import Counter
+
+def solution(s1, s2):
+    answer = 0
+    counter1=Counter(s1)
+    counter2=Counter(s2)
+    inter=counter1&counter2
+    answer=sum(inter.values())
+    return answer
