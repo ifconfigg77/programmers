@@ -1,0 +1,21 @@
+def solution(skill, skill_trees):
+    answer = 0
+    # 딕셔너리에 스킬차수 정리
+    dic={}
+    for index,s in enumerate(skill):
+        dic[s]=index
+    
+    for i in range(len(skill_trees)):
+        tmp=True
+        count=-1 #현재 차수
+        string=skill_trees[i]
+        for j in range(len(skill_trees[i])):
+            if string[j] in dic.keys():   #차수가 있는 스킬이라면 
+                if dic[string[j]]>count and dic[string[j]]-count==1: #현재 차수보다 하나 큰 차수의 스킬만 사용가능
+                    count=dic[string[j]] #차수 올려주기
+                else:
+                    tmp=False  
+                    break
+        if tmp:
+            answer+=1
+    return answer
