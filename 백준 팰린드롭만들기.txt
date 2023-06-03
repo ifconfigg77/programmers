@@ -1,0 +1,39 @@
+from collections import Counter
+
+
+s=input()
+
+c=Counter(s)
+
+
+if len(s)%2==0:
+
+    tmp = ""
+    ans = ""
+    for i in sorted(c.keys()):
+        if c[i]%2==1:
+            print("I'm Sorry Hansoo")
+            exit()
+    for i in sorted(c.keys()):
+        for j in range(c[i]//2):
+            tmp+=i
+    ans=tmp+tmp[::-1]
+
+else:
+
+    tmp = ""
+    ans = ""
+    stack=0
+    for i in sorted(c.keys()):
+        if c[i]%2==1:
+            stack+=1
+            c[i]-=1
+            k=i
+            if stack==2:
+                print("I'm Sorry Hansoo")
+                exit()
+    for i in sorted(c.keys()):
+        for j in range(c[i]//2):
+            tmp+=i
+    ans=tmp+k+tmp[::-1]
+print(ans)
