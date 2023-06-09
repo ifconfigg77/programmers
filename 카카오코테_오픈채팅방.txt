@@ -1,0 +1,20 @@
+def solution(record):
+    answer = []
+    dic={}
+    for i in record:
+        c=i.split(" ")
+        answer.append([c[0],c[1]])
+        if c[0]=="Leave":
+            continue
+        else:
+            dic[c[1]]=c[2]
+    result=[]
+    for i in answer:
+        if i[0]=="Enter":
+            tmp=f'{dic[i[1]]}님이 들어왔습니다.'
+            result.append(tmp)
+        elif i[0]=="Leave":
+            tmp=f'{dic[i[1]]}님이 나갔습니다.'
+            result.append(tmp)
+    
+    return result
