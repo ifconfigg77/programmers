@@ -1,0 +1,17 @@
+def solution(word):
+    answer = 0
+    li=[]
+    dic=["A","E","I","O","U"]
+    def dfs(arr,index):
+        if len(arr)>=5:
+            return
+        tmp=""
+        for i in range(5):
+            arr.append(dic[i])
+            tmp="".join(arr)
+            li.append(tmp)
+            dfs(arr,i)
+            arr.pop()
+    dfs([],0)
+    answer=li.index(word)+1
+    return answer
