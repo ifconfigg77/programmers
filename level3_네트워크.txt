@@ -1,0 +1,18 @@
+def solution(n, computers):
+    answer = 0
+    dist=[0]*(n+1)
+    
+    def dfs(start):
+        dist[start]=1
+
+        for i in range(n):
+            if dist[i]==0 and computers[start][i]==1:
+                dist[i]=1
+                dfs(i)
+        return
+    
+    for i in range(n):
+        if dist[i]==0:
+            answer+=1
+            dfs(i)
+    return answer
