@@ -1,0 +1,44 @@
+from collections import deque
+
+n,m=map(int,input().split())
+li=[]
+dx=[1,-1,0,0]
+dy=[0,0,1,-1]
+vis=[[0]*m for _ in range(n)]
+graph=[[0]*m for _ in range(n)]
+for i in range(n):
+    a=list(map(int,input().split()))
+    li.append(a)
+
+def bfs(x,y):
+    q=deque()
+    q.append([x,y])
+    vis[x][y]=1
+
+    if li[x][y]==0:
+        tmp=1
+    else:
+        tmp=-2
+
+    while q:
+        cur_x,cur_y=q.popleft()
+        for i in range(4):
+            nx=cur_x+dx[i]
+            ny=cur_y+dy[i]
+            if 0<=nx<n and 0<=ny<m:
+                if vis[nx][ny]==0 and li[nx][ny]!=1:
+                    if li[nx][ny]==0:
+                        tmp+=1
+                    else:
+                        tmp-=2
+                    q.append([nx,ny])
+                    vis[nx][ny]=1
+    return tmp
+ans=0
+for i in range(n):
+    for j in range(m):
+        if li[i][j]!=1 and vis[i][j]==0:
+            ans=max(ans,bfs(i,j))
+            
+
+print(ans)
