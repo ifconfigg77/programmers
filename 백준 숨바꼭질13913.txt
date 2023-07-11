@@ -1,0 +1,33 @@
+import sys
+from collections import deque
+n,k=map(int,input().split())
+
+inf=sys.maxsize
+
+vis=[0]*(100001)
+trace=[0]*(100001)
+
+q=deque()
+q.append(n)
+
+
+
+
+while q:
+    x=q.popleft()
+    if x==k:
+        print(vis[x])
+        path=[k]
+        end=k
+        while end!=n:
+            end=trace[end]
+            path.append(end)
+        path.reverse()
+        print(" ".join(map(str, path)))
+        break
+
+    for next in [x+1,x-1,2*x]:
+        if 0<=next<100001 and vis[next]==0:
+            vis[next]=vis[x]+1
+            q.append(next)
+            trace[next]=x
